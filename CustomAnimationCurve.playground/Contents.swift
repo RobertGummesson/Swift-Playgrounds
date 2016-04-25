@@ -48,7 +48,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     func addCurveView() {
         let size: CGFloat = 200
         let curveView = CurveView(frame: CGRect(x: 0, y: bounds.midY - size / 2, width: size, height: size))
-        curveView.backgroundColor = UIColor.clearColor()
+        curveView.backgroundColor = .clearColor()
         curveView.controlPoints = controlPoints
         containerView.addSubview(curveView)
     }
