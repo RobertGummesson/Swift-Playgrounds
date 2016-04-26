@@ -31,7 +31,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
             
             let context = UIGraphicsGetCurrentContext()
             let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
-            let color = UIColor(red: 53/255, green: 58/255, blue: 64/255, alpha:1)
+            let color = UIColor(red: 53/255, green: 58/255, blue: 64/255, alpha: 1)
             
             CGContextAddRect(context, frame)
             CGContextSetStrokeColorWithColor(context, color.colorWithAlphaComponent(0.5).CGColor)
@@ -56,7 +56,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     func addCircleView() {
         let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 112, height: 112))
         circleView.layer.cornerRadius = circleView.bounds.midX
-        circleView.backgroundColor = UIColor(red: 103/255, green: 135/255, blue:175/255, alpha:1)
+        circleView.backgroundColor = UIColor(red: 103/255, green: 135/255, blue: 175/255, alpha: 1)
         circleView.center = CGPoint(x: bounds.width * 0.7, y: bounds.midY)
         containerView.addSubview(circleView)
         addAnimation(toView: circleView)
