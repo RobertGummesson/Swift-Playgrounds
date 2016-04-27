@@ -26,9 +26,12 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         
         var controlPoints: [CGPoint] = []
         
+        convenience init (controlPoints: [CGPoint]) {
+            self.init()
+            self.controlPoints = controlPoints
+        }
+        
         override func drawRect(rect: CGRect) {
-            guard controlPoints.count == 2 else { return }
-            
             let context = UIGraphicsGetCurrentContext()
             let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
             let color = UIColor(red: 53/255, green: 58/255, blue: 64/255, alpha: 1)
@@ -47,8 +50,9 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     
     func addCurveView() {
         let size: CGFloat = 200
-        let curveView = CurveView(frame: CGRect(x: 0, y: bounds.midY - size / 2, width: size, height: size))
+        let curveView = CurveView(controlPoints: controlPoints)
         curveView.backgroundColor = .clearColor()
+        curveView.frame = CGRect(x: 0, y: bounds.midY - size / 2, width: size, height: size)
         curveView.controlPoints = controlPoints
         containerView.addSubview(curveView)
     }
