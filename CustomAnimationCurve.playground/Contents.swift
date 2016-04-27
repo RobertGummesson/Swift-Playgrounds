@@ -26,7 +26,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         
         var controlPoints: [CGPoint] = []
         
-        convenience init (controlPoints: [CGPoint]) {
+        convenience init(controlPoints: [CGPoint]) {
             self.init()
             self.controlPoints = controlPoints
         }
