@@ -34,16 +34,15 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         override func drawRect(rect: CGRect) {
             let context = UIGraphicsGetCurrentContext()
             let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
-            let color = UIColor(red: 53/255, green: 58/255, blue: 64/255, alpha: 1)
             
             CGContextAddRect(context, frame)
-            CGContextSetStrokeColorWithColor(context, color.colorWithAlphaComponent(0.5).CGColor)
+            CGContextSetStrokeColorWithColor(context, [#Color(colorLiteralRed: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5)#].CGColor)
             CGContextStrokePath(context)
             
             CGContextMoveToPoint(context, frame.minX, frame.maxY)
             CGContextAddCurveToPoint(context, frame.minX + controlPoints[0].x * frame.width, frame.maxY - controlPoints[0].y * frame.height, frame.minX + controlPoints[1].x * frame.width, frame.maxY - controlPoints[1].y * frame.height, frame.maxX, frame.minY)
             
-            CGContextSetStrokeColorWithColor(context, color.CGColor)
+            CGContextSetStrokeColorWithColor(context, [#Color(colorLiteralRed: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1)#].CGColor)
             CGContextStrokePath(context)
         }
     }
@@ -60,7 +59,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     func addCircleView() {
         let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 112, height: 112))
         circleView.layer.cornerRadius = circleView.bounds.midX
-        circleView.backgroundColor = UIColor(red: 103/255, green: 135/255, blue: 175/255, alpha: 1)
+        circleView.backgroundColor = [#Color(colorLiteralRed: 0.403921568627451, green: 0.5294117647058824, blue: 0.6862745098039216, alpha: 1)#]
         circleView.center = CGPoint(x: bounds.width * 0.7, y: bounds.midY)
         containerView.addSubview(circleView)
         addAnimation(toView: circleView)
