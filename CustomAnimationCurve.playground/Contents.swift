@@ -49,15 +49,14 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
             override func draw(_ rect: CGRect) {
             let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
                 if let context = UIGraphicsGetCurrentContext() {
-                context.addRect(frame)
-                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
-                context.strokePath()
-                context.moveTo(x: frame.minX, y: frame.maxY)
-                context.addCurveTo(cp1x: frame.minX + controlPoints[0].x * frame.width, cp1y: frame.maxY - controlPoints[0].y * frame.height, cp2x: frame.minX + controlPoints[1].x * frame.width, cp2y: frame.maxY - controlPoints[1].y * frame.height, endingAtX: frame.maxX, y: frame.minY)
+                    context.addRect(frame)
+                    context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
+                    context.strokePath()
+                    context.moveTo(x: frame.minX, y: frame.maxY)
+                    context.addCurveTo(cp1x: frame.minX + controlPoints[0].x * frame.width, cp1y: frame.maxY - controlPoints[0].y * frame.height, cp2x: frame.minX + controlPoints[1].x * frame.width, cp2y: frame.maxY - controlPoints[1].y * frame.height, endingAtX: frame.maxX, y: frame.minY)
 
-                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
-                context.strokePath()
-
+                    context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
+                    context.strokePath()
                 }
             }
         #else
