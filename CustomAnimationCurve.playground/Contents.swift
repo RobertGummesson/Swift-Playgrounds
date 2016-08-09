@@ -4,7 +4,6 @@ import UIKit
 #else
     import XCPlayground
 #endif
-
 /*:
  **IMPORTANT:** To view the animation, go ***View->Assistant Editor->Show Assistant Editor***.
  # Custom animation curves
@@ -24,7 +23,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
 
     let containerView = UIView(frame: bounds)
     #if swift(>=3.0)
-        containerView.backgroundColor = .white()
+        containerView.backgroundColor = .white
     #else
         containerView.backgroundColor = .whiteColor()
     #endif
@@ -47,17 +46,16 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
 
         #if swift(>=3.0)
             override func draw(_ rect: CGRect) {
-            let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
-                if let context = UIGraphicsGetCurrentContext() {
-                    context.addRect(frame)
-                    context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
-                    context.strokePath()
-                    context.moveTo(x: frame.minX, y: frame.maxY)
-                    context.addCurveTo(cp1x: frame.minX + controlPoints[0].x * frame.width, cp1y: frame.maxY - controlPoints[0].y * frame.height, cp2x: frame.minX + controlPoints[1].x * frame.width, cp2y: frame.maxY - controlPoints[1].y * frame.height, endingAtX: frame.maxX, y: frame.minY)
-
-                    context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
-                    context.strokePath()
-                }
+                let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
+                guard let context = UIGraphicsGetCurrentContext() else { return }
+                context.addRect(frame)
+                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
+                context.strokePath()
+                context.moveTo(x: frame.minX, y: frame.maxY)
+                context.addCurveTo(cp1x: frame.minX + controlPoints[0].x * frame.width, cp1y: frame.maxY - controlPoints[0].y * frame.height, cp2x: frame.minX + controlPoints[1].x * frame.width, cp2y: frame.maxY - controlPoints[1].y * frame.height, endingAtX: frame.maxX, y: frame.minY)
+                
+                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
+                context.strokePath()
             }
         #else
             override func drawRect(rect: CGRect) {
@@ -83,7 +81,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         let size: CGFloat = 200
         let curveView = CurveView(controlPoints: controlPoints)
         #if swift(>=3.0)
-            curveView.backgroundColor = .clear()
+            curveView.backgroundColor = .clear
         #else
             curveView.backgroundColor = .clearColor()
         #endif
