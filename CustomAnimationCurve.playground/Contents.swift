@@ -18,18 +18,10 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     let bounds = CGRect(x: 0, y: 0, width: 375, height: 667)
 
     let containerView = UIView(frame: bounds)
-    #if swift(>=3.0)
-        containerView.backgroundColor = .white
-    #else
-        containerView.backgroundColor = .whiteColor()
-    #endif
+    containerView.backgroundColor = .white
 
-    #if swift(>=3.0)
-        PlaygroundPage.current.liveView = containerView
-    #else
-        XCPlaygroundPage.currentPage.liveView = containerView
-    #endif
-
+    PlaygroundPage.current.liveView = containerView
+    
 
     class CurveView : UIView {
 
@@ -58,11 +50,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     func addCurveView() {
         let size: CGFloat = 200
         let curveView = CurveView(controlPoints: controlPoints)
-        #if swift(>=3.0)
-            curveView.backgroundColor = .clear
-        #else
-            curveView.backgroundColor = .clearColor()
-        #endif
+        curveView.backgroundColor = .clear
 
         curveView.frame = CGRect(x: 0, y: bounds.midY - size / 2, width: size, height: size)
         curveView.controlPoints = controlPoints
