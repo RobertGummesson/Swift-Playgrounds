@@ -1,9 +1,5 @@
 import UIKit
-#if swift(>=3.0)
-    import PlaygroundSupport
-#else
-    import XCPlayground
-#endif
+import PlaygroundSupport
 /*:
  **IMPORTANT:** To view the animation, go ***View->Assistant Editor->Show Assistant Editor***.
  # Custom animation curves
@@ -38,44 +34,25 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
     class CurveView : UIView {
 
         var controlPoints: [CGPoint] = []
-
+        
         convenience init(controlPoints: [CGPoint]) {
             self.init()
             self.controlPoints = controlPoints
         }
-
-        #if swift(>=3.0)
-            override func draw(_ rect: CGRect) {
-                let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
-                guard let context = UIGraphicsGetCurrentContext() else { return }
-                context.addRect(frame)
-                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
-                context.strokePath()
-                context.move(to: CGPoint(x: frame.minX, y: frame.maxY))
-                context.addCurve(to: CGPoint(x: frame.maxX, y: frame.minY),
-                                 control1: CGPoint(x: frame.minX + controlPoints[0].x * frame.width, y: frame.maxY - controlPoints[0].y * frame.height),
-                                 control2: CGPoint(x: frame.minX + controlPoints[1].x * frame.width, y: frame.maxY - controlPoints[1].y * frame.height))
-                context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
-                context.strokePath()
-            }
-        #else
-            override func drawRect(rect: CGRect) {
-                let context = UIGraphicsGetCurrentContext()
-                let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
-
-                CGContextAddRect(context, frame)
-                CGContextSetStrokeColorWithColor(context, [#Color(colorLiteralRed: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5)#].CGColor)
-                CGContextStrokePath(context)
-
-                CGContextMoveToPoint(context, frame.minX, frame.maxY)
-                CGContextAddCurveToPoint(context, frame.minX + controlPoints[0].x * frame.width, frame.maxY - controlPoints[0].y * frame.height, frame.minX + controlPoints[1].x * frame.width, frame.maxY - controlPoints[1].y * frame.height, frame.maxX, frame.minY)
-
-                CGContextSetStrokeColorWithColor(context, [#Color(colorLiteralRed: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1)#].CGColor)
-                CGContextStrokePath(context)
-            }
-        #endif
-
-
+        
+        override func draw(_ rect: CGRect) {
+            let frame = bounds.insetBy(dx: bounds.midX / 2, dy: bounds.midY / 2)
+            guard let context = UIGraphicsGetCurrentContext() else { return }
+            context.addRect(frame)
+            context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 0.5).cgColor)
+            context.strokePath()
+            context.move(to: CGPoint(x: frame.minX, y: frame.maxY))
+            context.addCurve(to: CGPoint(x: frame.maxX, y: frame.minY),
+                             control1: CGPoint(x: frame.minX + controlPoints[0].x * frame.width, y: frame.maxY - controlPoints[0].y * frame.height),
+                             control2: CGPoint(x: frame.minX + controlPoints[1].x * frame.width, y: frame.maxY - controlPoints[1].y * frame.height))
+            context.setStrokeColor(#colorLiteral(red: 0.2078431372549019, green: 0.2274509803921569, blue: 0.2509803921568627, alpha: 1).cgColor)
+            context.strokePath()
+        }
     }
 
     func addCurveView() {
@@ -96,11 +73,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 112, height: 112))
         circleView.layer.cornerRadius = circleView.bounds.midX
 
-        #if swift(>=3.0)
-            circleView.backgroundColor = #colorLiteral(red: 0.403921568627451, green: 0.5294117647058824, blue: 0.6862745098039216, alpha: 1)
-        #else
-            circleView.backgroundColor = [#Color(colorLiteralRed: 0.403921568627451, green: 0.5294117647058824, blue: 0.6862745098039216, alpha: 1)#]
-        #endif
+        circleView.backgroundColor = #colorLiteral(red: 0.403921568627451, green: 0.5294117647058824, blue: 0.6862745098039216, alpha: 1)
 
         circleView.center = CGPoint(x: bounds.width * 0.7, y: bounds.midY)
         containerView.addSubview(circleView)
@@ -116,11 +89,7 @@ func configurePlayground(withControlPoints c1x: CGFloat, _ c1y: CGFloat, _ c2x: 
         animation.duration = duration
         animation.repeatCount = .infinity
 
-        #if swift(>=3.0)
-            view.layer.add(animation, forKey: nil)
-        #else
-            view.layer.addAnimation(animation, forKey: nil)
-        #endif
+        view.layer.add(animation, forKey: nil)
     }
 
     addCurveView()
